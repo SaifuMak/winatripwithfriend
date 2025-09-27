@@ -1,5 +1,5 @@
 'use client'
-
+import { LuLoaderCircle } from "react-icons/lu";
 import Image from "next/image"
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
@@ -12,19 +12,21 @@ import { SIDEBAR_ITEMS } from "@/app/constants/admin";
 const Navbar = () => {
     const pathname = usePathname()
     const router = useRouter()
-    const [itemName, setItemName] = useState('');
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [isChangePasswordModal, setIsChangePasswordModal] = useState(false)
+    // const [itemName, setItemName] = useState('');
+    // const [dropdownOpen, setDropdownOpen] = useState(false);
+    // const [isChangePasswordModal, setIsChangePasswordModal] = useState(false)
+    const [loading, setloading] = useState(false)
 
 
 
-    useEffect(() => {
-        const item = SIDEBAR_ITEMS.find(item => item.path === pathname)
-        if (item) setItemName(item.name)
-    }, [pathname])
+    // useEffect(() => {
+    //     const item = SIDEBAR_ITEMS.find(item => item.path === pathname)
+    //     if (item) setItemName(item.name)
+    // }, [pathname])
 
 
     const handleLogout = async () => {
+        setloading(true)
         try {
             const response = await AXIOS_INSTANCE.post(`logout/`, {});
             toast.success('Logged out successfully')
@@ -34,15 +36,28 @@ const Navbar = () => {
             toast.error(error?.response?.data?.error)
 
         } finally {
-            // setIsLoading(false);
+            setloading(false)
         }
 
     }
 
-   
+
     return (
         <>
-            <div className=" min-h-12  bg-white "></div>
+            <div className=" min-h-4 my-5 px-10  flex justify-end ">
+                <div onClick={handleLogout} className=" flex-center cursor-pointer px-3 py-1.5  hover:ring ring-slate-300  rounded-md space-x-2 hover:bg-slate-50">
+                    {loading ? (
+                        <div className=" ">
+                            <LuLoaderCircle className="  size-6 object-contain animate-spin" />
+                        </div>
+
+                    ) : (
+                        <img src="/Icon/logout.png" alt="" className=" size-6 object-contain" />
+                    )}
+                    <p className=" font-semibold">Logout</p>
+                </div>
+
+            </div>
         </>
     )
 }

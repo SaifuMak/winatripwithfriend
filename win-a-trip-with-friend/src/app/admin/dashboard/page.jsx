@@ -4,7 +4,6 @@ import Navbar from "@/app/components/admin/Navbar";
 
 export default function Dashboard() {
 
-   
 
     return (
         <div className="   h-screen w-full ">
