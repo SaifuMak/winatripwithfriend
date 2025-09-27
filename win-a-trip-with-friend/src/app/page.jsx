@@ -22,7 +22,7 @@ export default function Home() {
 
     <div className="w-full h-fit flex justify-center bg-black items-center">
       <div className="lg:w-9/12 w-full min-h-[130dvh]  relative">
-        <div className="absolute inset-0 w-full h-7/12">
+        <div className="absolute inset-0 w-full h-8/12">
           <img
             src="/image/home/banner.jpg"
             alt="Banner"
@@ -38,7 +38,7 @@ export default function Home() {
         </div>
 
         <div className=" w-full h-full  absolute inset-0">
-          <div className=" pt-10 2xl:pt-16 lg:w-6/12 sm:w-9/12 w-11/12  h-full mx-auto flex  flex-col items-center">
+          <div className=" pt-10 2xl:pt-10 lg:w-6/12 sm:w-9/12 w-11/12  h-full mx-auto flex  flex-col items-center">
 
 
             <div className=" 2xl:w-7/12 w-7/12 space-x-6 h-fit  flex items-center justify-between  ">
