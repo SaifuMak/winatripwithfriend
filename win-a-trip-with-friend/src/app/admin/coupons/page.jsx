@@ -16,6 +16,7 @@ export default function Coupons() {
 
     const [coupons, setCoupons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+      const [query, setQuery] = useState("");
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
@@ -191,7 +192,7 @@ export default function Coupons() {
                         </div>
 
                         <div className="flex-1 max-w-2xl ml-auto">
-                            <SearchComponent onSearch={onSearch} />
+                            <SearchComponent onSearch={onSearch} query={query} setQuery={setQuery} />
                         </div>
                     </div>
 
@@ -205,7 +206,7 @@ export default function Coupons() {
                                     <p className="text-gray-500 text-lg">No coupons found</p>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-4 gap-12 w-full mb-5">
+                                <div className="grid grid-cols-2 xl:grid-cols-3  2xl:grid-cols-4 gap-12 w-full mb-5">
                                     {coupons.map((coupon) => (
                                         <Coupon key={coupon.id} coupon={coupon} onEdit={onEdit} onDelete={onDelete} />
                                     ))}
@@ -218,7 +219,7 @@ export default function Coupons() {
                         function_to_call={getCoupons}
                         currentPage={currentPage}
                         TotalPages={totalPages}
-                        // queryParameter={selectedItineraryStatus}
+                        queryParameter={query}
                         buttonColor='bg-slate-500'
                     />)}
                 </div>

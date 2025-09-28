@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { IoMdSearch, IoMdClose } from "react-icons/io";
 
 
-export default function SearchComponent({ onSearch }) {
-  const [query, setQuery] = useState("");
+export default function SearchComponent({ onSearch, query, setQuery }) {
+
 
   const handleSearch = () => {
     if (query.trim() !== "") {
