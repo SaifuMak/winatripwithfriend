@@ -8,6 +8,7 @@ import LoaderIcon from "@/app/components/general-components/LoaderIcon";
 import Pagination from "@/app/components/general-components/Pagination";
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import { toast } from "sonner";
+import { IoMdAdd } from "react-icons/io";
 
 export default function Coupons() {
 
@@ -55,6 +56,10 @@ export default function Coupons() {
         setNewCode(coupon.code)
     }
 
+    const onAdd = () => {
+        setOpenedModal('add')
+    }
+
     const onDelete = (coupon) => {
         setOpenedModal('delete')
         setSelectedCoupon(coupon)
@@ -65,6 +70,36 @@ export default function Coupons() {
         setSelectedCoupon(null)
         setNewCode('')
     }
+
+
+
+    const confirmAddCoupon = async () => {
+        toast.dismiss()
+        if (isWriting) {
+            return
+        }
+
+        if (!newCode) {
+            toast.error('please add the coupon code')
+            return
+        }
+        const data = {
+            'code': newCode
+        }
+        setIsWriting(true)
+        try {
+            const response = await AXIOS_INSTANCE.post(`coupons/`, data);
+            getCoupons()
+            toast.success(response.data.message)
+            handleCloseModal()
+
+        } catch (e) {
+            console.log(e);
+            toast.error(e.response.data.error)
+        } finally {
+            setIsWriting(false);
+        }
+    };
 
 
     const confirmEditCoupon = async () => {
@@ -145,6 +180,7 @@ export default function Coupons() {
                 <div className="flex-1 ml-4 mr-8 mb-0 rounded-xl bg-slate-50 w-full flex flex-col  z-50 p-10">
                     <div className="  flex items-center mb-10 ">
                         <h1 className=" text-4xl  leading-none font-semibold tracking-wide   ">Coupons</h1>
+                        <div onClick={onAdd} className=" cursor-pointer  h-full px-2 flex items-center  text-white font-semibold  ml-3   bg-slate-900 rounded-md"><IoMdAdd className="text-xl mr-1" /><span className="">Add</span>
                         </div>
                     </div>
                     {
@@ -174,15 +210,27 @@ export default function Coupons() {
                     />)}
                 </div>
 
-                {openedModal === 'edit' && (
+                {(openedModal === 'edit' || openedModal === 'add') && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-50">
                         <div className="bg-white rounded-lg shadow-lg p-6 w-96">
                             <h3 className="text-lg font-semibold text-blue-600 mb-3">
-                                ✏️ Edit Coupon
+                                {openedModal === 'edit'
+                                    ? '✏️ Edit Coupon'
+                                    : '➕ Add Coupon'}
+
                             </h3>
                             <p className="text-sm text-gray-500 mb-4">
-                                Update the coupon code below and click <b>Save</b>.
+                                {openedModal === "edit" ? (
+                                    <>
+                                        Update the coupon code below and click <b>Save</b>.
+                                    </>
+                                ) : (
+                                    <>
+                                        Enter a new coupon code below and click <b>Save</b>.
+                                    </>
+                                )}
                             </p>
+
                             <input
                                 type="text"
                                 value={newCode}
@@ -192,15 +240,15 @@ export default function Coupons() {
                             <div className="flex justify-end space-x-3">
                                 <button
                                     onClick={handleCloseModal}
-                                    className="px-4 py-2 cursor-pointer bg-gray-200 rounded-md hover:bg-gray-300"
+                                    className="px-4 py-2 text-sm cursor-pointer bg-gray-200 rounded-md hover:bg-gray-300"
                                 >
                                     Cancel
                                 </button>
                                 <button
-                                    onClick={confirmEditCoupon}
-                                    className="px-4 py-2 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-700"
+                                    onClick={openedModal === "edit" ? confirmEditCoupon : confirmAddCoupon}
+                                    className="px-4 py-2 text-sm bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-700"
                                 >
-                                    {isWriting ? <LoaderIcon className="text-lg" /> : 'Save'}
+                                    {isWriting ? <LoaderIcon className="" /> : 'Save'}
                                 </button>
                             </div>
                         </div>
@@ -217,16 +265,21 @@ export default function Coupons() {
                                 Are you sure to delete coupon{" "}
                                 <b className="text-gray-800">{selectedCoupon?.code}</b>
                             </p>
+                            {selectedCoupon?.is_claimed && (
+                                <p className="text-xs text-red-600 font-medium mb-4">
+                                    Warning: You are trying to delete a claimed coupon.
+                                </p>
+                            )}
                             <div className="flex justify-end space-x-3">
                                 <button
                                     onClick={handleCloseModal}
-                                    className="px-4 py-2 bg-gray-200 cursor-pointer rounded-md hover:bg-gray-300"
+                                    className="px-4 py-2 bg-gray-200 text-sm cursor-pointer rounded-md hover:bg-gray-300"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleConfirmDelete}
-                                    className="px-4 py-2 bg-red-600 text-white cursor-pointer rounded-md hover:bg-red-700"
+                                    className="px-4 py-2 bg-red-600 text-sm text-white cursor-pointer rounded-md hover:bg-red-700"
                                 >
                                     Confirm
                                 </button>
