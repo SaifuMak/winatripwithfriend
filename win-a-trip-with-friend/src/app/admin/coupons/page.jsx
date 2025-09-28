@@ -82,7 +82,6 @@ export default function Coupons() {
         }
         setIsWriting(true)
         try {
-            // setIsLoading(true)
             const response = await AXIOS_INSTANCE.patch(`coupons/${selectedCoupon.id}/`, data);
             getCoupons(currentPage)
             toast.success(response.data.message)
