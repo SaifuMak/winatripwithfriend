@@ -9,6 +9,7 @@ import Pagination from "@/app/components/general-components/Pagination";
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import { toast } from "sonner";
 import { IoMdAdd } from "react-icons/io";
+import SearchComponent from "@/app/components/admin/SearchComponent";
 
 export default function Coupons() {
 
@@ -29,10 +30,10 @@ export default function Coupons() {
 
 
 
-    const getCoupons = async (page = 1) => {
+    const getCoupons = async (page = 1, query='') => {
         try {
             setIsLoading(true)
-            const response = await AXIOS_INSTANCE.get(`coupons/?page=${page}`);
+            const response = await AXIOS_INSTANCE.get(`coupons/?page=${page}&query=${query}`);
             setCoupons(response.data.results || []); // adjust based on your API response
             setCurrentPage(page)
             const nextpage = getPageNumber(response.data.next)
@@ -158,17 +159,15 @@ export default function Coupons() {
         }
     };
 
+
+    const onSearch = (query) => {
+        getCoupons(1,query)
+    }
+
     useEffect(() => {
         getCoupons();
     }, []);
 
-    // if (isLoading) {
-    //     return (
-    //         <div className="flex items-center justify-center h-screen w-full">
-    //             <LoaderIcon />
-    //         </div>
-    //     );
-    // }
 
     return (
         <div className="min-h-screen w-full">
@@ -178,17 +177,31 @@ export default function Coupons() {
                 <Sidebar />
 
                 <div className="flex-1 ml-4 mr-8 mb-0 rounded-xl bg-slate-50 w-full flex flex-col  z-50 p-10">
-                    <div className="  flex items-center mb-10 ">
-                        <h1 className=" text-4xl  leading-none font-semibold tracking-wide   ">Coupons</h1>
-                        <div onClick={onAdd} className=" cursor-pointer  h-full px-2 flex items-center  text-white font-semibold  ml-3   bg-slate-900 rounded-md"><IoMdAdd className="text-xl mr-1" /><span className="">Add</span>
+                    <div className="flex items-center mb-10 space-x-6">
+                        <h1 className="text-4xl leading-none font-semibold tracking-wide">
+                            Coupons
+                        </h1>
+
+                        <div
+                            onClick={onAdd}
+                            className="cursor-pointer px-4 py-2 flex items-center text-white font-semibold bg-slate-900 rounded-md hover:bg-slate-800"
+                        >
+                            <IoMdAdd className="text-xl mr-2" />
+                            <span>Add</span>
+                        </div>
+
+                        <div className="flex-1 max-w-2xl ml-auto">
+                            <SearchComponent onSearch={onSearch} />
                         </div>
                     </div>
+
+
                     {
                         isLoading ? (<div className="flex items-center justify-center h-screen w-full">
                             <LoaderIcon />
                         </div>) :
                             coupons.length === 0 ? (
-                                <div className="flex items-center justify-center w-full">
+                                <div className="flex items-center h-[50vh] justify-center w-full">
                                     <p className="text-gray-500 text-lg">No coupons found</p>
                                 </div>
                             ) : (
