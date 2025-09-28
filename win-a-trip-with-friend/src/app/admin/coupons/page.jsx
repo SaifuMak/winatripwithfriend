@@ -56,7 +56,7 @@ export default function Coupons() {
     }
 
     const onDelete = (coupon) => {
-        setOpenedModal('edit')
+        setOpenedModal('delete')
         setSelectedCoupon(coupon)
     }
 
@@ -95,6 +95,34 @@ export default function Coupons() {
         }
     };
 
+    const handleConfirmDelete = async () => {
+
+        if (isWriting) {
+            return
+        }
+
+        toast.dismiss()
+
+        if (!selectedCoupon) {
+            toast.error('please select a coupon')
+            return
+        }
+
+        setIsWriting(true)
+        try {
+            const response = await AXIOS_INSTANCE.delete(`coupons/${selectedCoupon.id}/`);
+            getCoupons(currentPage)
+            toast.success(response.data.message)
+            handleCloseModal()
+
+        } catch (e) {
+            console.log(e);
+            toast.error(e.response.data.error)
+        } finally {
+            setIsWriting(false);
+        }
+    };
+
     useEffect(() => {
         getCoupons();
     }, []);
@@ -115,7 +143,10 @@ export default function Coupons() {
                 <Sidebar />
 
                 <div className="flex-1 ml-4 mr-8 mb-0 rounded-xl bg-slate-50 w-full flex flex-col  z-50 p-10">
-                    <h1 className=" text-4xl font-semibold tracking-wide  mb-10  ">Coupons</h1>
+                    <div className="  flex items-center mb-10 ">
+                        <h1 className=" text-4xl  leading-none font-semibold tracking-wide   ">Coupons</h1>
+                        </div>
+                    </div>
                     {
                         isLoading ? (<div className="flex items-center justify-center h-screen w-full">
                             <LoaderIcon />
@@ -139,7 +170,7 @@ export default function Coupons() {
                         currentPage={currentPage}
                         TotalPages={totalPages}
                         // queryParameter={selectedItineraryStatus}
-                        buttonColor='bg-[#394C5D]'
+                        buttonColor='bg-slate-500'
                     />)}
                 </div>
 
@@ -170,6 +201,34 @@ export default function Coupons() {
                                     className="px-4 py-2 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-700"
                                 >
                                     {isWriting ? <LoaderIcon className="text-lg" /> : 'Save'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {openedModal === 'delete' && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-50">
+                        <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+                            <h3 className="text-lg font-semibold text-red-600 mb-3">
+                                🗑️ Delete Coupon
+                            </h3>
+                            <p className="text-sm text-gray-500 mb-4">
+                                Are you sure to delete coupon{" "}
+                                <b className="text-gray-800">{selectedCoupon?.code}</b>
+                            </p>
+                            <div className="flex justify-end space-x-3">
+                                <button
+                                    onClick={handleCloseModal}
+                                    className="px-4 py-2 bg-gray-200 cursor-pointer rounded-md hover:bg-gray-300"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleConfirmDelete}
+                                    className="px-4 py-2 bg-red-600 text-white cursor-pointer rounded-md hover:bg-red-700"
+                                >
+                                    Confirm
                                 </button>
                             </div>
                         </div>
