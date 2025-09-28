@@ -7,6 +7,7 @@ import AXIOS_INSTANCE from "@/app/lib/axios";
 import LoaderIcon from "@/app/components/general-components/LoaderIcon";
 import Pagination from "@/app/components/general-components/Pagination";
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
+import { toast } from "sonner";
 
 export default function Coupons() {
 
@@ -18,6 +19,13 @@ export default function Coupons() {
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
+
+    const [openedModal, setOpenedModal] = useState(null)
+    const [selectedCoupon, setSelectedCoupon] = useState(null)
+
+    const [newCode, setNewCode] = useState('');
+    const [isWriting, setIsWriting] = useState(false)
+
 
 
     const getCoupons = async (page = 1) => {
@@ -38,6 +46,53 @@ export default function Coupons() {
             console.log(e);
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const onEdit = (coupon) => {
+        setOpenedModal('edit')
+        setSelectedCoupon(coupon)
+        setNewCode(coupon.code)
+    }
+
+    const onDelete = (coupon) => {
+        setOpenedModal('edit')
+        setSelectedCoupon(coupon)
+    }
+
+    const handleCloseModal = () => {
+        setOpenedModal(null)
+        setSelectedCoupon(null)
+        setNewCode('')
+    }
+
+
+    const confirmEditCoupon = async () => {
+        toast.dismiss()
+        if (isWriting) {
+            return
+        }
+
+        if (!newCode) {
+            toast.error('please fill the coupon code')
+            return
+        }
+        const data = {
+            'code': newCode
+        }
+        setIsWriting(true)
+        try {
+            // setIsLoading(true)
+            const response = await AXIOS_INSTANCE.patch(`coupons/${selectedCoupon.id}/`, data);
+            getCoupons(currentPage)
+            toast.success(response.data.message)
+            handleCloseModal()
+
+        } catch (e) {
+            console.log(e);
+            toast.error(e.response.data.error)
+        } finally {
+            setIsWriting(false);
         }
     };
 
@@ -73,7 +128,7 @@ export default function Coupons() {
                             ) : (
                                 <div className="grid grid-cols-4 gap-12 w-full mb-5">
                                     {coupons.map((coupon) => (
-                                        <Coupon key={coupon.id} coupon={coupon} />
+                                        <Coupon key={coupon.id} coupon={coupon} onEdit={onEdit} onDelete={onDelete} />
                                     ))}
                                 </div>
                             )}
@@ -88,6 +143,39 @@ export default function Coupons() {
                         buttonColor='bg-[#394C5D]'
                     />)}
                 </div>
+
+                {openedModal === 'edit' && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black/30 bg-opacity-50 z-50">
+                        <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+                            <h3 className="text-lg font-semibold text-blue-600 mb-3">
+                                ✏️ Edit Coupon
+                            </h3>
+                            <p className="text-sm text-gray-500 mb-4">
+                                Update the coupon code below and click <b>Save</b>.
+                            </p>
+                            <input
+                                type="text"
+                                value={newCode}
+                                onChange={(e) => setNewCode(e.target.value)}
+                                className="w-full border outline-none border-gray-300 rounded-md p-2 mb-4"
+                            />
+                            <div className="flex justify-end space-x-3">
+                                <button
+                                    onClick={handleCloseModal}
+                                    className="px-4 py-2 cursor-pointer bg-gray-200 rounded-md hover:bg-gray-300"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={confirmEditCoupon}
+                                    className="px-4 py-2 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-700"
+                                >
+                                    {isWriting ? <LoaderIcon className="text-lg" /> : 'Save'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
