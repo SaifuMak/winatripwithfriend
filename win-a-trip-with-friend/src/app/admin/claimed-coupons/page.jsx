@@ -8,11 +8,17 @@ import LoaderIcon from "@/app/components/general-components/LoaderIcon";
 import Pagination from "@/app/components/general-components/Pagination";
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import { toast } from "sonner";
-import { IoMdAdd } from "react-icons/io";
+
 import SearchComponent from "@/app/components/admin/SearchComponent";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
 
 export default function ClaimedCoupons() {
 
+    dayjs.extend(utc);
+    dayjs.extend(timezone);
 
     const [coupons, setCoupons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +29,8 @@ export default function ClaimedCoupons() {
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
 
+    const tableHeadStyle = 'px-4 py-4 text-left text-sm font-bold text-gray-700 border-b border-black/40'
+    const tableRowStyle =  "px-4 py-3 xl:py-4 border-b border-black/10 text-sm xl:text-base"
 
     const getClaimedCoupons = async (page = 1, query = '') => {
         try {
@@ -35,7 +43,7 @@ export default function ClaimedCoupons() {
             setNextPage(nextpage)
             setPrevPage(previous)
 
-            const totalPages = getTotalPagesCount(response.data.count, 5)
+            const totalPages = getTotalPagesCount(response.data.count, 10)
             setTotalPages(totalPages)
 
         } catch (e) {
@@ -44,8 +52,6 @@ export default function ClaimedCoupons() {
             setIsLoading(false);
         }
     };
-
-
 
     const onSearch = (query) => {
         getClaimedCoupons(1, query)
@@ -76,18 +82,41 @@ export default function ClaimedCoupons() {
 
 
                     {
-                        isLoading ? (<div className="flex items-center justify-center h-screen w-full">
+                        isLoading ? (<div className="flex items-center justify-center h-[50vh] w-full">
                             <LoaderIcon />
                         </div>) :
                             coupons.length === 0 ? (
                                 <div className="flex items-center h-[50vh] justify-center w-full">
-                                    <p className="text-gray-500 text-lg">No coupons found</p>
+                                    <p className="text-gray-500 text-lg">No claims found</p>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-2 xl:grid-cols-3  2xl:grid-cols-4 gap-12 w-full mb-5">
-                                    {/* {coupons.map((coupon) => (
-                                        <Coupon key={coupon.id} coupon={coupon} onEdit={onEdit} onDelete={onDelete} />
-                                    ))} */}
+                                <div className="overflow-x-auto">
+                                    <table className="min-w-full border border-gray-200 bg-white rounded-lg shadow-sm">
+                                        <thead className="bg-gray-100">
+                                            <tr>
+                                                <th className={`${tableHeadStyle}`}>Code</th>
+                                                <th className={`${tableHeadStyle}`}>First Name</th>
+                                                <th className={`${tableHeadStyle}`}>Last Name</th>
+                                                <th className={`${tableHeadStyle}`}>Email</th>
+                                                <th className={`${tableHeadStyle}`}>Phone</th>
+                                                <th className={`${tableHeadStyle}`}>Claimed At (AEST)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {coupons.map((coupon) => (
+                                                <tr key={coupon.id} className="hover:bg-gray-50">
+                                                    <td className={`${tableRowStyle}`}>{coupon.code}</td>
+                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.first_name}</td>
+                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.last_name}</td>
+                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.email}</td>
+                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.phone}</td>
+                                                    <td className={`${tableRowStyle}`}>
+                                                        {dayjs.utc(coupon.claimed_at).tz("Australia/Sydney").format("DD MMM YYYY, hh:mm A")}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
                                 </div>
                             )}
 

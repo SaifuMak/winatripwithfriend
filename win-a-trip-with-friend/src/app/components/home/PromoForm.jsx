@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 
+import { toast } from "sonner";
+import AXIOS_INSTANCE from "@/app/lib/axios";
+import LoaderIcon from "../general-components/LoaderIcon";
+
+
 export default function PromoForm() {
 
     const formFieldsStyle = 'w-full p-1.5  bg-white outline-none  placeholder:font-bold placeholder:text-red-600'
@@ -15,21 +20,46 @@ export default function PromoForm() {
         agree: false,
     });
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
+        
         setFormData((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleClearForm = ()=>{
+        setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        mobileNumber: "",
+        uniqueCode: "",
+        agree: false,
+    })
+    }
+
+    const handleSubmit = async (e) => {
+        toast.dismiss()
         e.preventDefault();
-        if (!formData.agree) {
-            alert('please agree it ')
+        // if (!formData.agree) {
+        //     toast.error('please agree it ')
+        // }
+        setIsLoading(true)
+        try {
+            const response = await AXIOS_INSTANCE.post(`claim-coupon/`, formData);
+            toast.success(response.data.message)
+            handleClearForm()
+
+        } catch (e) {
+            console.log(e);
+            toast.error(e.response?.data?.error)
+        } finally {
+            setIsLoading(false);
         }
-        console.log("Form Submitted:", formData);
-        // You can send `formData` to your backend API here
     };
 
     return (
@@ -53,7 +83,6 @@ export default function PromoForm() {
                 placeholder="Last Name"
                 value={formData.lastName}
                 onChange={handleChange}
-                required
                 className={formFieldsStyle}
             />
 
@@ -126,9 +155,9 @@ export default function PromoForm() {
 
             <button
                 type="submit"
-                className="w-56 bg-black text-white py-1.5 rounded-full text-lg font-bold hover:bg-gray-800 transition"
+                className="w-56 flex-center cursor-pointer bg-black text-white py-1.5 rounded-full text-lg font-bold hover:bg-gray-800 transition"
             >
-                Submit
+              {isLoading ? <LoaderIcon className="text-2xl animate-spin" /> : 'Submit' }  
             </button>
         </form>
     );

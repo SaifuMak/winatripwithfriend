@@ -16,7 +16,7 @@ export default function Coupons() {
 
     const [coupons, setCoupons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-      const [query, setQuery] = useState("");
+    const [query, setQuery] = useState("");
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
@@ -31,7 +31,7 @@ export default function Coupons() {
 
 
 
-    const getCoupons = async (page = 1, query='') => {
+    const getCoupons = async (page = 1, query = '') => {
         try {
             setIsLoading(true)
             const response = await AXIOS_INSTANCE.get(`coupons/?page=${page}&query=${query}`);
@@ -162,7 +162,7 @@ export default function Coupons() {
 
 
     const onSearch = (query) => {
-        getCoupons(1,query)
+        getCoupons(1, query)
     }
 
     useEffect(() => {
@@ -237,6 +237,11 @@ export default function Coupons() {
                                 {openedModal === "edit" ? (
                                     <>
                                         Update the coupon code below and click <b>Save</b>.
+                                        {selectedCoupon?.is_claimed && (
+                                            <p className="text-xs mt-2 text-red-600 font-medium mb-4">
+                                                Warning: You are trying to edit a claimed coupon.
+                                            </p>
+                                        )}
                                     </>
                                 ) : (
                                     <>

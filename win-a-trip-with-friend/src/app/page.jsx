@@ -2,24 +2,7 @@ import PromoForm from "./components/home/PromoForm";
 
 export default function Home() {
   return (
-    // <div className="h-[150dvh]  relative bg-black">
-    //   <div className="absolute inset-0 left-1/2 -translate-x-1/2 w-9/12 h-8/12">
-    //     <img
-    //       src="/image/home/banner.jpg"
-    //       alt="Banner"
-    //       className="w-full h-full"
-    //     />
-    //   </div>
-
-    //   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-9/12 h-7/12">
-    //     <img
-    //       src="/image/home/pattern.png"
-    //       alt="Pattern"
-    //       className="w-full h-full"
-    //     />
-    //   </div>
-    // </div>
-
+   
     <div className="w-full h-fit flex justify-center bg-black items-center">
       <div className="lg:w-9/12 w-full min-h-[130dvh]  relative">
         <div className="absolute inset-0 w-full h-8/12">

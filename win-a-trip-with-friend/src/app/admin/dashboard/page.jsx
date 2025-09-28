@@ -105,9 +105,9 @@ export default function Dashboard() {
                             <Pie data={pieData} options={pieOptions} />
                         </div>
                         <div className=" mt-6 space-y-2">
-                            <div className=" flex items-center max-xl:text-sm"><span className="xl:size-4 size-3  rounded-sm mr-2 bg-[#16a34a] "></span> Claimed coupons</div>
+                            <div className=" flex items-center max-xl:text-sm"><span className="xl:size-4 size-3  rounded-sm mr-2 bg-[#16a34a] "></span> Claimed coupons ({stats?.claimed})</div>
 
-                            <div className=" flex items-center max-xl:text-sm"><span className="xl:size-4 size-3  rounded-sm mr-2 bg-[#ef4444] "></span> Unclaimed coupons</div>
+                            <div className=" flex items-center max-xl:text-sm"><span className="xl:size-4 size-3  rounded-sm mr-2 bg-[#ef4444] "></span> Unclaimed coupons ({stats.unclaimed}) </div>
                         </div>
                     </div>
 
