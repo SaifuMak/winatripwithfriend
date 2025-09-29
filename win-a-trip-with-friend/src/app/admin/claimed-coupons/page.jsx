@@ -13,6 +13,7 @@ import SearchComponent from "@/app/components/admin/SearchComponent";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import { exportToExcel } from "@/app/utils/exportToExcel";
 
 
 export default function ClaimedCoupons() {
@@ -30,7 +31,7 @@ export default function ClaimedCoupons() {
     const [totalPages, setTotalPages] = useState(null)
 
     const tableHeadStyle = 'px-4 py-4 text-left text-sm font-bold text-gray-700 border-b border-black/40'
-    const tableRowStyle =  "px-4 py-3 xl:py-4 border-b border-black/10 text-sm xl:text-base"
+    const tableRowStyle = "px-4 py-3 xl:py-4 border-b border-black/10 text-sm xl:text-base"
 
     const getClaimedCoupons = async (page = 1, query = '') => {
         try {
@@ -57,6 +58,21 @@ export default function ClaimedCoupons() {
         getClaimedCoupons(1, query)
     }
 
+    const handleExport = () => {
+
+        const formattedData = coupons.map((item) => ({
+            "Coupon Code" : item.code,
+            "First Name": item.claimed_by?.first_name || "",
+            "Last Name": item.claimed_by?.last_name || "",
+            "Email": item.claimed_by?.email || "",
+            "Phone": item.claimed_by?.phone || "",
+            "Claimed At": item.claimed_at,
+
+        }));
+
+        exportToExcel(formattedData, "Coupon Claims");
+    };
+
     useEffect(() => {
         getClaimedCoupons();
     }, []);
@@ -74,6 +90,7 @@ export default function ClaimedCoupons() {
                         <h1 className="text-4xl leading-none font-semibold tracking-wide">
                             Claimed Coupons
                         </h1>
+                        <button onClick={handleExport} className=" cursor-pointer bg-black text-white  rounded-md px-4 py-1.5 font-medium ">Export Data</button>
 
                         <div className="flex-1 max-w-2xl ml-auto">
                             <SearchComponent onSearch={onSearch} query={query} setQuery={setQuery} />
@@ -111,7 +128,8 @@ export default function ClaimedCoupons() {
                                                     <td className={`${tableRowStyle}`}>{coupon.claimed_by?.email}</td>
                                                     <td className={`${tableRowStyle}`}>{coupon.claimed_by?.phone}</td>
                                                     <td className={`${tableRowStyle}`}>
-                                                        {dayjs.utc(coupon.claimed_at).tz("Australia/Sydney").format("DD MMM YYYY, hh:mm A")}
+                                                        {coupon?.claimed_at}
+                                                        {/* {dayjs.utc(coupon.claimed_at).tz("Australia/Sydney").format("DD MMM YYYY, hh:mm A")} */}
                                                     </td>
                                                 </tr>
                                             ))}
