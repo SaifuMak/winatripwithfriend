@@ -5,7 +5,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 import AXIOS_INSTANCE from "@/app/lib/axios";
 import LoaderIcon from "../general-components/LoaderIcon";
-// import {showSuccess, showError, showConfirm} from '@/app/utils/alert'
 
 
 export default function PromoForm({ showPopup }) {
@@ -43,6 +42,8 @@ export default function PromoForm({ showPopup }) {
         })
     }
 
+
+    
     const handleSubmit = async (e) => {
         toast.dismiss()
 
