@@ -93,14 +93,14 @@ export default function Home() {
           <img
             src="/image/home/banner.jpg"
             alt="Banner"
-            className="w-full h-full"
+            className="w-full h-full object-cover"
           />
         </div>
         <div className="absolute z-0  bottom-0  w-full h-7/12">
           <img
             src="/image/home/pattern.png"
             alt="Banner"
-            className="w-full h-full"
+            className="w-full h-full object-cover"
           />
         </div>
 
