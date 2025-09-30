@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <>
 
-      <div className="w-full  flex   h-full md:min-h-[130vh] max-md:hidden justify-center bg-black items-center">
-        <div className="xl:w-9/12 lg:w-10/12 w-full h-full   md:relative">
+      <div className="w-full  flex   h-full md:min-h-[130vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
+        <div className="xl:w-9/12 lg:w-10/12 w-full h-full  md:relative">
           <div className="absolute inset-0 w-full h-8/12">
             <img
               src="/image/home/banner.jpg"
@@ -62,13 +62,13 @@ export default function Home() {
               </div>
 
               {/* <div className="w-full bor absolute -bottom-56 left-72  size-96  "> */}
-              <div className="w-fit  absolute  right-1  2xl:-right-12 max-md:hidden  xl:bottom-10 lg:bottom-36 bottom-0 size-[16%]  sm:size-[28%] lg:size-[32%] xl:size-[35%]   2xl:size-[37%]  ">
+              <div className="w-fit   absolute  right-1  2xl:-right-12 max-md:hidden  xl:bottom-10 lg:bottom-36 bottom-0 size-[16%]  sm:size-[28%] lg:size-[32%] xl:size-[35%]   2xl:size-[37%]  ">
                 <img src="/image/home/cola.png" alt="coke" className=" w-full h-full object-contain" />
               </div>
 
-              <div className="2xl:w-[350px] lg:w-[300px] max-sm:w-[200px] h-fit max-md:hidden  absolute bottom-1 sm:bottom-8 lg:bottom-28 xl:bottom-20 2xl:bottom-20 sm:left-5 left-2 lg:left-0 xl:left-5  ">
+              <div className="2xl:w-[350px]  lg:w-[300px] max-sm:w-[200px] h-fit max-md:hidden  absolute bottom-1 sm:bottom-8 lg:bottom-28 xl:bottom-20 2xl:bottom-20 sm:left-5 left-2 lg:left-0 xl:left-5  ">
                 <p className=" max-w-sm text-center mb-4 max-sm:text-sm text-white md:font-semibold">Purchase any of these Coca-Cola products to participate  </p>
-                <img src="/image/home/brand logos.png" alt="brands" className=" w-full h-full object-contain" />
+                <img src="/image/home/brand logos.png" alt="brands" className=" w-full  object-contain" />
               </div>
 
             </div>
