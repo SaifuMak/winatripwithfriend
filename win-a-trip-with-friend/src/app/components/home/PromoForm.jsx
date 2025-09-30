@@ -42,8 +42,6 @@ export default function PromoForm({ showPopup }) {
         })
     }
 
-
-    
     const handleSubmit = async (e) => {
         toast.dismiss()
 
@@ -53,7 +51,7 @@ export default function PromoForm({ showPopup }) {
         try {
             const response = await AXIOS_INSTANCE.post(`claim-coupon/`, formData);
             // toast.success(response.data.message)
-             showPopup('success','Success',response.data.message)
+            showPopup('success', 'Success', response.data.message)
             handleClearForm()
         } catch (e) {
             console.log(e);
@@ -128,6 +126,8 @@ export default function PromoForm({ showPopup }) {
                         onChange={handleChange}
                         className="sr-only" // hides the native checkbox
                         required
+                        onInvalid={(e) => e.target.setCustomValidity("Please check this box to proceed")}
+                        onInput={(e) => e.target.setCustomValidity("")}
                     />
                     <div
                         className={` size-3 lg:size-4 border  border-white flex items-center justify-center
