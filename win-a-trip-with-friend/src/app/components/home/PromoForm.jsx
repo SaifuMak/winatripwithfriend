@@ -65,7 +65,7 @@ export default function PromoForm() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="w-full flex flex-col  items-center  mx-auto p-6 space-y-6 "
+            className="w-full flex flex-col h-full  items-center  mx-auto p-6 space-y-6 "
         >
             <input
                 type="text"
