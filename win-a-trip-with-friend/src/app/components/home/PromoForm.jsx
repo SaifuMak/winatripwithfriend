@@ -5,9 +5,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import AXIOS_INSTANCE from "@/app/lib/axios";
 import LoaderIcon from "../general-components/LoaderIcon";
+// import {showSuccess, showError, showConfirm} from '@/app/utils/alert'
 
 
-export default function PromoForm() {
+export default function PromoForm({ showPopup }) {
 
     const formFieldsStyle = 'w-full md:p-1.5 p-2  bg-white outline-none  placeholder:font-bold placeholder:text-red-600'
 
@@ -24,39 +25,39 @@ export default function PromoForm() {
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        
+
         setFormData((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
         }));
     };
 
-    const handleClearForm = ()=>{
+    const handleClearForm = () => {
         setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        mobileNumber: "",
-        uniqueCode: "",
-        agree: false,
-    })
+            firstName: "",
+            lastName: "",
+            email: "",
+            mobileNumber: "",
+            uniqueCode: "",
+            agree: false,
+        })
     }
 
     const handleSubmit = async (e) => {
         toast.dismiss()
+
         e.preventDefault();
-        // if (!formData.agree) {
-        //     toast.error('please agree it ')
-        // }
+
         setIsLoading(true)
         try {
             const response = await AXIOS_INSTANCE.post(`claim-coupon/`, formData);
-            toast.success(response.data.message)
+            // toast.success(response.data.message)
+             showPopup('success','Success',response.data.message)
             handleClearForm()
-
         } catch (e) {
             console.log(e);
-            toast.error(e.response?.data?.error)
+            // toast.error(e.response?.data?.error)
+            showPopup('error', 'Error', e.response?.data?.error)
         } finally {
             setIsLoading(false);
         }
@@ -125,6 +126,7 @@ export default function PromoForm() {
                         checked={formData.agree}
                         onChange={handleChange}
                         className="sr-only" // hides the native checkbox
+                        required
                     />
                     <div
                         className={` size-3 lg:size-4 border  border-white flex items-center justify-center
@@ -157,7 +159,7 @@ export default function PromoForm() {
                 type="submit"
                 className="w-56 flex-center cursor-pointer bg-black text-white py-1.5 rounded-full text-lg font-bold hover:bg-gray-800 transition"
             >
-              {isLoading ? <LoaderIcon className="text-2xl animate-spin" /> : 'Submit' }  
+                {isLoading ? <LoaderIcon className="text-2xl animate-spin" /> : 'Submit'}
             </button>
         </form>
     );

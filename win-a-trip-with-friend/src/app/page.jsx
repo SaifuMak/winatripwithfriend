@@ -1,6 +1,22 @@
+'use client'
 import PromoForm from "./components/home/PromoForm";
+import CustomPopup from "./components/general-components/CustomPopup";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [popup, setPopup] = useState({
+    isOpen: false,
+    status: "success", // "success" | "error"
+    title: "",
+    subtitle: "",
+  });
+
+  const showPopup = (status, title, subtitle) => {
+    setPopup({ isOpen: true, status, title, subtitle });
+  };
+
+
   return (
     <>
 
@@ -42,7 +58,7 @@ export default function Home() {
 
               {/* form */}
               <div className="2xl:mt-16 xl:mt-12 mt-6  relative">
-                <PromoForm />
+                <PromoForm showPopup={showPopup} />
               </div>
 
               {/* <div className="w-full bor absolute -bottom-56 left-72  size-96  "> */}
@@ -95,7 +111,7 @@ export default function Home() {
           </div>
 
           <div className=" mt-7 ">
-            <PromoForm />
+            <PromoForm showPopup={showPopup} />
           </div>
 
           {/* mobile view  */}
@@ -112,6 +128,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+
+      <CustomPopup
+        isOpen={popup.isOpen}
+        status={popup.status}
+        title={popup.title}
+        subtitle={popup.subtitle}
+        onClose={() => setPopup({ ...popup, isOpen: false })}
+      />
     </>
 
   );
