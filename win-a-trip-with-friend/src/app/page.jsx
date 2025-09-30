@@ -11,6 +11,7 @@ export default function Home() {
     title: "",
     subtitle: "",
   });
+  const [hasSuccessfullyClaimed, setHasSuccessfullyClaimed] = useState(false)
 
   const showPopup = (status, title, subtitle) => {
     setPopup({ isOpen: true, status, title, subtitle });
@@ -58,7 +59,15 @@ export default function Home() {
 
               {/* form */}
               <div className="2xl:mt-16 xl:mt-12 mt-6  relative">
-                <PromoForm showPopup={showPopup} />
+                {hasSuccessfullyClaimed ? (
+                  <div className="bg-white p-12 2xl:p-20 2xl:min-w-[700px] xl:min-w-[500px] min-h-[400px] flex  flex-col  items-center justify-center w-full h-full text-black">
+                    <p className=" text-3xl font-bold">Thank You</p>
+                    <p className="text-2xl font-semibold mt-4 text-center">Your Coupon has been successfully claimed</p>
+                  </div>
+                ) : (
+                  <PromoForm showPopup={showPopup} setHasSuccessfullyClaimed={setHasSuccessfullyClaimed} />
+                )}
+
               </div>
 
               {/* <div className="w-full bor absolute -bottom-56 left-72  size-96  "> */}
@@ -66,7 +75,7 @@ export default function Home() {
                 <img src="/image/home/cola.png" alt="coke" className=" w-full h-full object-contain" />
               </div>
 
-              <div className="2xl:w-[350px]  lg:w-[300px] max-sm:w-[200px] h-fit max-md:hidden  absolute bottom-1 sm:bottom-8 lg:bottom-28 xl:bottom-20 2xl:bottom-20 sm:left-5 left-2 lg:left-0 xl:left-5  ">
+              <div className="2xl:w-[350px]  lg:w-[300px] max-sm:w-[200px] h-fit max-md:hidden  absolute bottom-1 sm:bottom-8 lg:bottom-28 xl:bottom-32 2xl:bottom-28 sm:left-5 left-2 lg:left-0 xl:left-5  ">
                 <p className=" max-w-sm text-center mb-4 max-sm:text-sm text-white md:font-semibold">Purchase any of these Coca-Cola products to participate  </p>
                 <img src="/image/home/brand logos.png" alt="brands" className=" w-full  object-contain" />
               </div>
@@ -79,7 +88,7 @@ export default function Home() {
 
 
       {/* for mobiles  */}
-      <div className=" w-full  flex justify-center items-center relative bg-black md:hidden ">
+      <div className=" w-full  flex justify-center items-center relative md:hidden ">
         <div className="absolute z-0 inset-0 w-full h-8/12">
           <img
             src="/image/home/banner.jpg"
@@ -111,7 +120,11 @@ export default function Home() {
           </div>
 
           <div className=" mt-7 ">
-            <PromoForm showPopup={showPopup} />
+            {hasSuccessfullyClaimed ? (<div className="bg-white p-5  min-h-[300px] flex  flex-col  items-center justify-center w-full h-full text-black">
+              <p className=" text-2xl font-bold">Thank You</p>
+              <p className="text-xl font-semibold mt-4 text-center">Your Coupon has been successfully claimed</p>
+            </div>) : (<PromoForm showPopup={showPopup} setHasSuccessfullyClaimed={setHasSuccessfullyClaimed}/>)}
+
           </div>
 
           {/* mobile view  */}

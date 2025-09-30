@@ -7,7 +7,7 @@ import AXIOS_INSTANCE from "@/app/lib/axios";
 import LoaderIcon from "../general-components/LoaderIcon";
 
 
-export default function PromoForm({ showPopup }) {
+export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
 
     const formFieldsStyle = 'w-full md:p-1.5 p-2  bg-white outline-none  placeholder:font-bold placeholder:text-red-600'
 
@@ -51,7 +51,8 @@ export default function PromoForm({ showPopup }) {
         try {
             const response = await AXIOS_INSTANCE.post(`claim-coupon/`, formData);
             // toast.success(response.data.message)
-            showPopup('success', 'Success', response.data.message)
+            // showPopup('success', 'Success', response.data.message)
+            setHasSuccessfullyClaimed(true)
             handleClearForm()
         } catch (e) {
             console.log(e);
