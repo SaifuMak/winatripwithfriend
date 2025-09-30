@@ -81,7 +81,7 @@ export default function Home() {
 
         <div className=" w-11/12 mt-10 z-20   flex flex-col  items-center ">
 
-          <div className=" flex items-center space-x-7">
+          <div className=" flex items-center space-x-6 px-5">
             <div className="w-fit h-20 2xl:h-24 ">
               <img src="/image/home/coke-logo.png" alt="coke-logo" className=" w-full h-full object-contain" />
             </div>
