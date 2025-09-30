@@ -4,7 +4,7 @@ export default function Home() {
   return (
 
     <div className="w-full h-fit flex justify-center bg-black items-center">
-      <div className="lg:w-9/12 w-full min-h-[130dvh]  relative">
+      <div className="lg:w-9/12 w-full max-md:min-h-[120vh] min-h-[130vh]  relative">
         <div className="absolute inset-0 w-full h-8/12">
           <img
             src="/image/home/banner.jpg"
