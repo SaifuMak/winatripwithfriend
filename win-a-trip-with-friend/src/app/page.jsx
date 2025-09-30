@@ -30,11 +30,11 @@ export default function Home() {
               className="w-full h-full"
             />
           </div>
-          <div className="absolute  bottom-0 w-full h-7/12">
+          <div className="absolute  bottom-0 w-full h-7/12 overflow-hidden ">
             <img
               src="/image/home/pattern.png"
               alt="Pattern"
-              className="w-full h-full"
+              className="w-full h-full scale-x-105"
             />
           </div>
 
@@ -96,6 +96,7 @@ export default function Home() {
             className="w-full h-full object-cover"
           />
         </div>
+
         <div className="absolute z-0  bottom-0  w-full h-7/12">
           <img
             src="/image/home/pattern.png"
