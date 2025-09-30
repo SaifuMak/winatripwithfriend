@@ -60,7 +60,7 @@ export default function Home() {
               {/* form */}
               <div className="2xl:mt-16 xl:mt-12 mt-6  relative">
                 {hasSuccessfullyClaimed ? (
-                  <div className="bg-white p-12 2xl:p-20 2xl:min-w-[700px] xl:min-w-[500px] min-h-[400px] flex  flex-col  items-center justify-center w-full h-full text-black">
+                  <div className="bg-[#e41e2a] text-white  p-12 2xl:p-20 2xl:min-w-[700px] xl:min-w-[500px] min-h-[400px] flex  flex-col  items-center justify-center w-full h-full ">
                     <p className=" text-3xl font-bold">Thank You</p>
                     <p className="text-2xl font-semibold mt-4 text-center">Your Coupon has been successfully claimed</p>
                   </div>
@@ -120,10 +120,10 @@ export default function Home() {
           </div>
 
           <div className=" mt-7 ">
-            {hasSuccessfullyClaimed ? (<div className="bg-white p-5  min-h-[300px] flex  flex-col  items-center justify-center w-full h-full text-black">
+            {hasSuccessfullyClaimed ? (<div className="bg-[#e41e2a] text-white p-5  min-h-[300px] flex  flex-col  items-center justify-center w-full h-full ">
               <p className=" text-2xl font-bold">Thank You</p>
               <p className="text-xl font-semibold mt-4 text-center">Your Coupon has been successfully claimed</p>
-            </div>) : (<PromoForm showPopup={showPopup} setHasSuccessfullyClaimed={setHasSuccessfullyClaimed}/>)}
+            </div>) : (<PromoForm showPopup={showPopup} setHasSuccessfullyClaimed={setHasSuccessfullyClaimed} />)}
 
           </div>
 
