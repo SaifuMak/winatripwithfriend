@@ -9,7 +9,7 @@ import LoaderIcon from "../general-components/LoaderIcon";
 
 export default function PromoForm() {
 
-    const formFieldsStyle = 'w-full p-1.5  bg-white outline-none  placeholder:font-bold placeholder:text-red-600'
+    const formFieldsStyle = 'w-full md:p-1.5 p-2  bg-white outline-none  placeholder:font-bold placeholder:text-red-600'
 
     const [formData, setFormData] = useState({
         firstName: "",
