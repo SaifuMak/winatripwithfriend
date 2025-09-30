@@ -56,13 +56,13 @@ export default function Home() {
             </div>
 
             {/* mobile view  */}
-            <div className=" flex items-center justify-between md:hidden ">
+            <div className=" flex items-center  bor w-full space-x-5  justify-center md:hidden ">
 
-              <div className=" w-fit h-8">
+              <div className=" w-fit h-12">
                 <img src="/image/home/brand logos.png" alt="brands" className=" w-full h-full object-contain" />
               </div>
 
-              <div className=" size-20">
+              <div className=" size-28">
                 <img src="/image/home/cola.png" alt="coke" className=" w-full h-full object-contain" />
               </div>
 
