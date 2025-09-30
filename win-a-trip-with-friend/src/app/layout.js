@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Win a Trip",
-  description: "Win A Trip With Friend",
+  title: "Win The Ultimate Coachella Experience",
+  description: "Purchase  Coca-Cola products to participate  and win the ultimate Coachella Experience with your friend.",
 };
 
 export default function RootLayout({ children }) {
