@@ -88,10 +88,10 @@ export default function Home() {
 
 
       {/* for mobiles  */}
-      <div className=" w-full  flex justify-center items-center relative md:hidden ">
+      <div className=" w-full min-h-dvh flex justify-center items-center relative md:hidden ">
         <div className="absolute z-0 inset-0 w-full h-8/12">
           <img
-            src="/image/home/banner.jpg"
+            src="/image/home/banner-1.jpg"
             alt="Banner"
             className="w-full h-full object-cover"
           />
