@@ -61,11 +61,13 @@ export default function ClaimedCoupons() {
     const handleExport = () => {
 
         const formattedData = coupons.map((item) => ({
-            "Coupon Code" : item.code,
+            "Coupon Code": item.code,
             "First Name": item.claimed_by?.first_name || "",
             "Last Name": item.claimed_by?.last_name || "",
             "Email": item.claimed_by?.email || "",
+            "Date of Birth": item.claimed_by?.dob || "",
             "Phone": item.claimed_by?.phone || "",
+            "Address": item.claimed_by?.address || "",
             "Claimed At": item.claimed_at,
 
         }));
@@ -115,7 +117,9 @@ export default function ClaimedCoupons() {
                                                 <th className={`${tableHeadStyle}`}>First Name</th>
                                                 <th className={`${tableHeadStyle}`}>Last Name</th>
                                                 <th className={`${tableHeadStyle}`}>Email</th>
+                                                <th className={`${tableHeadStyle}`}>Date of Birth</th>
                                                 <th className={`${tableHeadStyle}`}>Phone</th>
+                                                <th className={`${tableHeadStyle}`}>Address</th>
                                                 <th className={`${tableHeadStyle}`}>Claimed At (AEST)</th>
                                             </tr>
                                         </thead>
@@ -123,10 +127,13 @@ export default function ClaimedCoupons() {
                                             {coupons.map((coupon) => (
                                                 <tr key={coupon.id} className="hover:bg-gray-50">
                                                     <td className={`${tableRowStyle}`}>{coupon.code}</td>
-                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.first_name}</td>
-                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.last_name}</td>
+                                                    <td className={`${tableRowStyle} capitalize`}>{coupon.claimed_by?.first_name}</td>
+                                                    <td className={`${tableRowStyle} capitalize`}>{coupon.claimed_by?.last_name}</td>
                                                     <td className={`${tableRowStyle}`}>{coupon.claimed_by?.email}</td>
+                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.dob}</td>
                                                     <td className={`${tableRowStyle}`}>{coupon.claimed_by?.phone}</td>
+
+                                                    <td className={`${tableRowStyle}`}>{coupon.claimed_by?.address}</td>
                                                     <td className={`${tableRowStyle}`}>
                                                         {coupon?.claimed_at}
                                                         {/* {dayjs.utc(coupon.claimed_at).tz("Australia/Sydney").format("DD MMM YYYY, hh:mm A")} */}

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import AXIOS_INSTANCE from "@/app/lib/axios";
 import LoaderIcon from "../general-components/LoaderIcon";
-
+import DobPicker from "./DobPicker";
 
 export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
 
@@ -14,6 +14,8 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
+        dob: "",
+        address: "",
         email: "",
         mobileNumber: "",
         uniqueCode: "",
@@ -23,6 +25,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleChange = (e) => {
+
         const { name, value, type, checked } = e.target;
 
         setFormData((prev) => ({
@@ -35,6 +38,8 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
         setFormData({
             firstName: "",
             lastName: "",
+            dob: "",
+            address: "",
             email: "",
             mobileNumber: "",
             uniqueCode: "",
@@ -42,10 +47,13 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
         })
     }
 
+
     const handleSubmit = async (e) => {
         toast.dismiss()
 
         e.preventDefault();
+        console.log(formData);
+        
 
         setIsLoading(true)
         try {
@@ -62,6 +70,8 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
             setIsLoading(false);
         }
     };
+
+
 
     return (
         <form
@@ -83,6 +93,19 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
                 name="lastName"
                 placeholder="Last Name"
                 value={formData.lastName}
+                onChange={handleChange}
+                className={formFieldsStyle}
+            />
+
+            <div className=" bg-white w-full">
+                <DobPicker setFormData={setFormData} />
+            </div>
+
+            <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                value={formData.address}
                 onChange={handleChange}
                 className={formFieldsStyle}
             />
@@ -118,7 +141,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
             />
 
             <div className="flex xl:mt-2 2xl:mt-4 space-x-2 md:w-10/12 mx-auto">
-                <label className="flex items-center cursor-pointer">
+                <label className="flex  cursor-pointer">
                     {/* Hidden native checkbox to handle form state */}
                     <input
                         type="checkbox"
@@ -131,7 +154,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
                         onInput={(e) => e.target.setCustomValidity("")}
                     />
                     <div
-                        className={` size-3 lg:size-4 border  border-white flex items-center justify-center
+                        className={` size-3 lg:size-4 border mt-1  border-white flex items-center justify-center
                   bg-transparent`}
                     >
                         {formData.agree && (

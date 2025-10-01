@@ -21,25 +21,25 @@ export default function Home() {
   return (
     <>
 
-      <div className="w-full  flex   h-full md:min-h-[130vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
-        <div className="xl:w-9/12 lg:w-10/12 w-full h-full  md:relative">
-          <div className="absolute inset-0 w-full h-8/12">
+      <div className="w-full  flex   overflow-x-hidden h-full md:min-h-[120vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
+        <div className=" w-full h-full   md:relative">
+          <div className="absolute inset-0 w-full h-full">
             <img
-              src="/image/home/banner.jpg"
+              src="/image/home/banner-1.jpg"
               alt="Banner"
-              className="w-full h-full"
+              className="w-full h-full object-cover   "
             />
           </div>
-          <div className="absolute  bottom-0 w-full h-7/12 overflow-hidden ">
+          <div className="absolute  bottom-0 w-full h-9/12 overflow-hidden ">
             <img
-              src="/image/home/pattern.png"
+              src="/image/home/pattern-1.png"
               alt="Pattern"
               className="w-full h-full scale-x-105"
             />
           </div>
 
           <div className=" w-full h-full  md:absolute md:inset-0 ">
-            <div className=" pt-10 2xl:pt-10 lg:w-6/12 sm:w-9/12 w-11/12  h-full mx-auto flex  flex-col items-center">
+            <div className=" pt-10 2xl:pt-10 2xl:w-4/12 md:w-5/12 sm:w-9/12 w-11/12  h-full mx-auto flex  flex-col items-center">
 
               <div className=" 2xl:w-7/12 w-7/12 space-x-6 h-fit  flex items-center justify-between  ">
                 {/* coke logo */}
@@ -53,7 +53,7 @@ export default function Home() {
               </div>
 
               {/* main text */}
-              <div className="w-full  h-fit 2xl:mt-16 md:mt-10 mt-5 ">
+              <div className="w-full  h-fit 2xl:mt-12 md:mt-10 mt-5 ">
                 <img src="/image/home/info-text.png" alt="info" className=" w-full h-full object-contain" />
               </div>
 
@@ -71,11 +71,11 @@ export default function Home() {
               </div>
 
               {/* <div className="w-full bor absolute -bottom-56 left-72  size-96  "> */}
-              <div className="w-fit   absolute  right-1  2xl:-right-12 max-md:hidden  xl:bottom-10 lg:bottom-36 bottom-0 size-[16%]  sm:size-[28%] lg:size-[32%] xl:size-[35%]   2xl:size-[37%]  ">
+              <div className="w-fit   absolute right-0    xl:-right-12  2xl:-right-36 max-md:hidden  xl:bottom-10 lg:bottom-12 bottom-0 size-[16%]  sm:size-[28%] lg:size-[32%] xl:size-[36%]   2xl:size-[38%]  ">
                 <img src="/image/home/cola.png" alt="coke" className=" w-full h-full object-contain" />
               </div>
 
-              <div className="2xl:w-[350px]  lg:w-[300px] max-sm:w-[200px] h-fit max-md:hidden  absolute bottom-1 sm:bottom-8 lg:bottom-28 xl:bottom-32 2xl:bottom-28 sm:left-5 left-2 lg:left-0 xl:left-5  ">
+              <div className="2xl:w-[350px]  lg:w-[300px] max-lg:w-[270px] h-fit max-md:hidden  absolute bottom-1 sm:bottom-8 lg:bottom-28 xl:bottom-32 2xl:bottom-28 sm:left-5 left-2 lg:left-10 xl:left-24  ">
                 <p className=" max-w-sm text-center mb-4 max-sm:text-sm text-white md:font-semibold">Purchase any of these Coca-Cola products to participate  </p>
                 <img src="/image/home/brand logos.png" alt="brands" className=" w-full  object-contain" />
               </div>
