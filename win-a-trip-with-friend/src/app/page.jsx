@@ -21,8 +21,9 @@ export default function Home() {
   return (
     <>
 
-      <div className="w-full  flex   overflow-x-hidden h-full md:min-h-[120vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
-        <div className=" w-full h-full   md:relative">
+      <div className="w-full   flex pb-10  overflow-x-hidden h-full md:min-h-[130vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
+
+        <div className=" w-full h-full   md:relative    ">
           <div className="absolute inset-0 w-full h-full">
             <img
               src="/image/home/banner-1.jpg"
@@ -38,7 +39,7 @@ export default function Home() {
             />
           </div>
 
-          <div className=" w-full h-full  md:absolute md:inset-0 ">
+          <div className=" w-full h-full  md:absolute md:inset-0  ">
             <div className=" pt-10 2xl:pt-10 2xl:w-4/12 md:w-5/12 sm:w-9/12 w-11/12  h-full mx-auto flex  flex-col items-center">
 
               <div className=" 2xl:w-7/12 w-7/12 space-x-6 h-fit  flex items-center justify-between  ">
@@ -69,6 +70,21 @@ export default function Home() {
                 )}
 
               </div>
+
+              <div className=" space-x-2 text-white ">
+                <a href="https://www.cocacolaep.com/company/privacy-notice/" target="_blank" rel="noopener noreferrer" className="underline">
+                  Privacy Policy
+                </a>
+                <span>|</span>
+                <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="underline">
+                  Terms & Conditions
+                </a>
+                <span>|</span>
+                <a href="/star-ctw-trip-to-coachella-promotion-abridged-terms" target="_blank" rel="noopener noreferrer" className="underline">
+                  Abridged Terms
+                </a>
+              </div>
+
 
               {/* <div className="w-full bor absolute -bottom-56 left-72  size-96  "> */}
               <div className="w-fit   absolute right-0    xl:-right-12  2xl:-right-36 max-md:hidden  xl:bottom-10 lg:bottom-12 bottom-0 size-[16%]  sm:size-[28%] lg:size-[32%] xl:size-[36%]   2xl:size-[38%]  ">
@@ -140,7 +156,11 @@ export default function Home() {
             </div>
 
           </div>
+
+           
         </div>
+
+       
       </div>
 
 

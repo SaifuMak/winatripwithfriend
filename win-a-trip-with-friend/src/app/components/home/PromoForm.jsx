@@ -20,6 +20,8 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
         mobileNumber: "",
         uniqueCode: "",
         agree: false,
+        termsAndCondition: false,
+
     });
 
     const [isLoading, setIsLoading] = useState(false)
@@ -44,6 +46,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
             mobileNumber: "",
             uniqueCode: "",
             agree: false,
+            termsAndCondition: false,
         })
     }
 
@@ -53,7 +56,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
 
         e.preventDefault();
         console.log(formData);
-        
+
 
         setIsLoading(true)
         try {
@@ -74,118 +77,182 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
 
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="w-full flex flex-col h-full  items-center  mx-auto p-6 space-y-6 "
-        >
-            <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-                className={formFieldsStyle}
-            />
-
-            <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className={formFieldsStyle}
-            />
-
-            <div className=" bg-white w-full">
-                <DobPicker setFormData={setFormData} />
-            </div>
-
-            <input
-                type="text"
-                name="address"
-                placeholder="Address"
-                value={formData.address}
-                onChange={handleChange}
-                className={formFieldsStyle}
-            />
-
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className={formFieldsStyle}
-            />
-
-            <input
-                type="tel"
-                name="mobileNumber"
-                placeholder="Mobile Number"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-                required
-                className={formFieldsStyle}
-            />
-
-            <input
-                type="text"
-                name="uniqueCode"
-                placeholder="Enter Unique Code Here"
-                value={formData.uniqueCode}
-                onChange={handleChange}
-                required
-                className={formFieldsStyle}
-            />
-
-            <div className="flex xl:mt-2 2xl:mt-4 space-x-2 md:w-10/12 mx-auto">
-                <label className="flex  cursor-pointer">
-                    {/* Hidden native checkbox to handle form state */}
-                    <input
-                        type="checkbox"
-                        name="agree"
-                        checked={formData.agree}
-                        onChange={handleChange}
-                        className="sr-only" // hides the native checkbox
-                        required
-                        onInvalid={(e) => e.target.setCustomValidity("Please check this box to proceed")}
-                        onInput={(e) => e.target.setCustomValidity("")}
-                    />
-                    <div
-                        className={` size-3 lg:size-4 border mt-1  border-white flex items-center justify-center
-                  bg-transparent`}
-                    >
-                        {formData.agree && (
-                            <svg
-                                className="w-3 h-3 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                viewBox="0 0 24 24"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        )}
-                    </div>
-                </label>
-                <p className="text-xs text-center text-white">
-                    Yes, I agree to receive news, offers and promotions via email from
-                    The Star Gold Coast relating to the hotel, theatre, restaurants and
-                    events. You can opt out directly with The Star at anytime. Please
-                    share my personal information with The Star Gold Coast for this
-                    purpose.
-                </p>
-            </div>
-
-
-            <button
-                type="submit"
-                className="w-56 flex-center cursor-pointer bg-black text-white py-1.5 rounded-full text-lg font-bold hover:bg-gray-800 transition"
+        <>
+            <form
+                onSubmit={handleSubmit}
+                className="w-full flex flex-col h-full  items-center  mx-auto p-6 space-y-6 "
             >
-                {isLoading ? <LoaderIcon className="text-2xl animate-spin" /> : 'Submit'}
-            </button>
-        </form>
+                <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className={formFieldsStyle}
+                />
+
+                <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className={formFieldsStyle}
+                />
+
+                <div className=" bg-white w-full">
+                    <DobPicker setFormData={setFormData} />
+                </div>
+
+                <input
+                    type="text"
+                    name="address"
+                    placeholder="Address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className={formFieldsStyle}
+                />
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className={formFieldsStyle}
+                />
+
+                <input
+                    type="tel"
+                    name="mobileNumber"
+                    placeholder="Mobile Number"
+                    value={formData.mobileNumber}
+                    onChange={handleChange}
+                    required
+                    className={formFieldsStyle}
+                />
+
+                <input
+                    type="text"
+                    name="uniqueCode"
+                    placeholder="Enter Unique Code Here"
+                    value={formData.uniqueCode}
+                    onChange={handleChange}
+                    required
+                    className={formFieldsStyle}
+                />
+
+                <div className="flex xl:mt-2 2xl:mt-4 space-x-2 md:w-10/12 mx-auto">
+                    <label className="flex  cursor-pointer">
+                        {/* Hidden native checkbox to handle form state */}
+                        <input
+                            type="checkbox"
+                            name="agree"
+                            checked={formData.agree}
+                            onChange={handleChange}
+                            className="sr-only" // hides the native checkbox
+                            required
+                            onInvalid={(e) => e.target.setCustomValidity("Please check this box to proceed")}
+                            onInput={(e) => e.target.setCustomValidity("")}
+                        />
+                        <div
+                            className={` size-3 lg:size-4 border mt-1  border-white flex items-center justify-center
+                  bg-transparent`}
+                        >
+                            {formData.agree && (
+                                <svg
+                                    className="w-3 h-3 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            )}
+                        </div>
+                    </label>
+                    <p className="text-xs text-center text-white">
+                        Yes, I agree to receive news, offers and promotions via email from
+                        The Star Gold Coast relating to the hotel, theatre, restaurants and
+                        events. You can opt out directly with The Star at anytime. Please
+                        share my personal information with The Star Gold Coast for this
+                        purpose.
+                    </p>
+                </div>
+
+
+                <div className="flex   md:w-10/12 mx-auto">
+                    <label className="flex  cursor-pointer ">
+                        {/* Hidden native checkbox to handle form state */}
+                        <input
+                            type="checkbox"
+                            name="termsAndCondition"
+                            checked={formData.termsAndCondition}
+                            onChange={handleChange}
+                            className="sr-only" // hides the native checkbox
+                            required
+                            onInvalid={(e) => e.target.setCustomValidity("Please check this box to proceed")}
+                            onInput={(e) => e.target.setCustomValidity("")}
+                        />
+                        <div
+                            className={` size-3 lg:size-4 border   border-white flex items-center justify-center
+                  bg-transparent`}
+                        >
+                            {formData.termsAndCondition && (
+                                <svg
+                                    className="w-3 h-3 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            )}
+                        </div>
+                    </label>
+                    <p className="text-xs text-center text-white">
+                        I confirm my details are correct, and I have read & accept the promotion{" "}
+                        <a
+                            href="https://www.cocacolaep.com/company/privacy-notice/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-1 underline"
+                        >
+                            Terms & Conditions
+                        </a>
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    className="w-56 flex-center cursor-pointer bg-black text-white py-1.5 rounded-full text-lg font-bold hover:bg-gray-800 transition"
+                >
+                    {isLoading ? <LoaderIcon className="text-2xl animate-spin" /> : 'Submit'}
+                </button>
+
+            </form>
+
+
+            <div className=" space-x-2  md:hidden text-white w-full  pb-5 mx-auto  flex   justify-center text-sm">
+                <a href="https://www.cocacolaep.com/company/privacy-notice/" target="_blank" rel="noopener noreferrer" className="underline">
+                    Privacy Policy
+                </a>
+                <span>|</span>
+                <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="underline">
+                    Terms & Conditions
+                </a>
+                <span>|</span>
+                <a href="/star-ctw-trip-to-coachella-promotion-abridged-terms" target="_blank" rel="noopener noreferrer" className="underline">
+                    Abridged Terms
+                </a>
+            </div>
+
+        </>
     );
 }
