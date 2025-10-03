@@ -217,7 +217,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
                     <p className="text-xs text-center text-white">
                         I confirm my details are correct, and I have read & accept the promotion{" "}
                         <a
-                            href="https://www.cocacolaep.com/company/privacy-notice/"
+                            href="/terms-and-conditions"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="ml-1 underline"

@@ -14,7 +14,7 @@ const AbridgedTermsData = () => {
 
             </h1>
 
-            <h2 className="text-2xl font-semibold mb-4">Abridged Terms</h2>
+            {/* <h2 className="text-2xl font-semibold mb-4">Abridged Terms</h2> */}
 
             <div className="mb-6">
                 <h3 className="text-xl font-semibold mb-2">Instructions</h3>

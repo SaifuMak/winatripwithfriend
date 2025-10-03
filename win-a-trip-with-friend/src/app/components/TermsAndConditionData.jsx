@@ -6,9 +6,8 @@ function TermsAndConditionData() {
   return (
     <div className="max-w-7xl lg:text-[17px]  mx-auto px-6 py-12 text-white leading-relaxed">
       <h1 className="text-3xl font-bold  w-full md:text-4xl  mb-12 mx-auto text-center ">
-        The Star CTW Trip to Coachella Promotion
+          The Star CTW Trip to Coachella Promotion – Terms and Conditions
       </h1>
-      <h2 className="text-2xl font-semibold mb-4">Terms and Conditions</h2>
 
       <p className="mb-6">
         The following Promotion Details are to be read in conjunction with the
