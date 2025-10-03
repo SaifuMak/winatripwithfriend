@@ -27,7 +27,7 @@ function TermsAndConditionData() {
       </p>
       <p className="mb-2">
         For any enquiries regarding this Promotion, please contact the Promoter
-        via <a href="mailto:Consumer_information@ccep.com" className="text-blue-600 underline">Consumer_information@ccep.com</a> or 132 653
+        via <a href="mailto:Consumer_information@ccep.com" className=" underline">Consumer_information@ccep.com</a> or 132 653
       </p>
       <p className="mb-2">
         <strong>Promotional Period: </strong> Start time/date: 09:00 am AEST on
@@ -368,7 +368,7 @@ function TermsAndConditionData() {
           <a
             href="https://www.star.com.au/privacy-policy"
             target="_blank"
-            className="text-blue-600 underline"
+            className=" underline"
           >
             https://www.star.com.au/privacy-policy
           </a>{" "}
@@ -376,7 +376,7 @@ function TermsAndConditionData() {
           <a
             href="https://www.cocacolaep.com/company/privacy-notice"
             target="_blank"
-            className="text-blue-600 underline"
+            className=" underline"
           >
             https://www.cocacolaep.com/company/privacy-notice
           </a>{" "}
@@ -522,7 +522,7 @@ function TermsAndConditionData() {
           <a
             href="https://www.gamblinghelpqld.org.au"
             target="_blank"
-            className="text-blue-600 underline"
+            className=" underline"
           >
             www.gamblinghelpqld.org.au
           </a>
