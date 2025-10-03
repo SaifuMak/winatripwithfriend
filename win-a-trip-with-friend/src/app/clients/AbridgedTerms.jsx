@@ -1,7 +1,7 @@
 import React from 'react'
-import TermsAndConditionData from '../components/TermsAndConditionData'
+import AbridgedTermsData from '../components/AbridgedTermsData'
 
-function TermsandCondition() {
+function AbridgedTerms() {
   return (
     <div className=" bg-[#e41e2a]">
 
@@ -24,7 +24,7 @@ function TermsandCondition() {
 
       </div>
 
-      <TermsAndConditionData />
+      <AbridgedTermsData />
     </div>
 
 
@@ -33,4 +33,4 @@ function TermsandCondition() {
   )
 }
 
-export default TermsandCondition
+export default AbridgedTerms

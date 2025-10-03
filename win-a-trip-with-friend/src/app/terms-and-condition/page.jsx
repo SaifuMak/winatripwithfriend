@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 
-export default function Collections() {
+export default function TermsandConditionPage() {
 
     return <TermsandCondition />
 }
