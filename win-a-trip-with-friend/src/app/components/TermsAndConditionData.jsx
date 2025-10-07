@@ -6,7 +6,7 @@ function TermsAndConditionData() {
   return (
     <div className="max-w-7xl lg:text-[17px]  mx-auto px-6 py-12 text-white leading-relaxed">
       <h1 className="text-3xl font-bold  w-full md:text-4xl  mb-12 mx-auto text-center ">
-          The Star CTW Trip to Coachella Promotion – Terms and Conditions
+        The Star CTW Trip to Coachella Promotion – Terms and Conditions
       </h1>
 
       <p className="mb-6">
@@ -29,8 +29,7 @@ function TermsAndConditionData() {
         via <a href="mailto:Consumer_information@ccep.com" className=" underline">Consumer_information@ccep.com</a> or 132 653
       </p>
       <p className="mb-2">
-        <strong>Promotional Period: </strong> Start time/date: 09:00 am AEST on
-        01/10/25 <br />
+        <strong>Promotional Period: </strong> Start time/date: 09:00 am AEST on 09/10/25 <br />
         End time/date: 11:59 pm AEST on 30/11/25
       </p>
       <p className="mb-6">
@@ -202,7 +201,7 @@ function TermsAndConditionData() {
                 <ul className={`${ulStyle} mt-2`}>
                   <li>return economy class flights from the winner’s nearest capital city to Los Angeles, California;</li>
                   <li>return private transfers from airport to accommodation;</li>
-                  <li>four (4) x nights twin share accommodation at Homewood Suites by Hilton La Quinta (daily breakfast included);</li>
+                  <li>•	four (4) x nights twin share accommodation at Omni Rancho Las Palmas (or similar) (daily breakfast included); </li>
                   <li>return private transfers from accommodation to Palm Springs;</li>
                   <li>return shared shuttle bus transfers from Palm Springs to Coachella;</li>
                   <li>two (2) x VIP tickets to the 2026 Coachella Music Festival at Palm Springs, California from 10/04/26 – 12/04/26;</li>
