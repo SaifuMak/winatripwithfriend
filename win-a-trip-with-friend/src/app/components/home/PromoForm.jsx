@@ -238,6 +238,26 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
 
             </form>
 
+             <div className=" text-center md:hidden text-xs mb-6 space-y-2 -mt-2 max-w-xs mx-auto text-white">
+                <p className="">The Star practises the responsible service of alcohol. Guests must be 18 years or over to enter the casino. BET WITH YOUR HEAD, NOT OVER IT. </p>
+                <p className="">
+                  Gambling Helpline{" "}
+                  <a href="tel:1800858858" className="hover:underline">
+                    1800 858 858
+                  </a>{" "}
+                  |{" "}
+                  <a
+                    href="https://gamblinghelpqld.org.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    gamblinghelpqld.org.au
+                  </a>
+                </p>
+
+              </div>
+
 
             <div className=" space-x-2  md:hidden text-white w-full  pb-5 mx-auto  flex   justify-center text-sm">
                 <a href="https://www.cocacolaep.com/company/privacy-notice/" target="_blank" rel="noopener noreferrer" className="underline">

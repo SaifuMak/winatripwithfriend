@@ -39,6 +39,7 @@ export default function Home() {
             />
           </div>
 
+
           <div className=" w-full h-full  md:absolute md:inset-0  ">
             <div className=" pt-10 2xl:pt-10 2xl:w-4/12 md:w-5/12 sm:w-9/12 w-11/12  h-full mx-auto flex  flex-col items-center">
 
@@ -68,6 +69,25 @@ export default function Home() {
                 ) : (
                   <PromoForm showPopup={showPopup} setHasSuccessfullyClaimed={setHasSuccessfullyClaimed} />
                 )}
+
+              </div>
+              <div className=" text-center text-xs mb-4 space-y-2 -mt-2 max-w-md text-white">
+                <p className="">The Star practises the responsible service of alcohol. Guests must be 18 years or over to enter the casino. BET WITH YOUR HEAD, NOT OVER IT. </p>
+                <p className="">
+                  Gambling Helpline{" "}
+                  <a href="tel:1800858858" className="hover:underline">
+                    1800 858 858
+                  </a>{" "}
+                  |{" "}
+                  <a
+                    href="https://gamblinghelpqld.org.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    gamblinghelpqld.org.au
+                  </a>
+                </p>
 
               </div>
 
@@ -144,6 +164,8 @@ export default function Home() {
 
           </div>
 
+          
+
           {/* mobile view  */}
           <div className=" flex items-center  w-full space-x-5  justify-center  ">
 
@@ -157,10 +179,10 @@ export default function Home() {
 
           </div>
 
-           
+
         </div>
 
-       
+
       </div>
 
 

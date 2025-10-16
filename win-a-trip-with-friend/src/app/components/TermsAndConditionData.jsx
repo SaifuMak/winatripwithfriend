@@ -173,9 +173,6 @@ function TermsAndConditionData() {
       <p>Up to AU$24,252.52</p>
 
 
-
-
-
       <h2 className="text-2xl font-semibold mt-10 mb-4">Prize Description</h2>
 
       <div className="overflow-x-auto mb-8">
