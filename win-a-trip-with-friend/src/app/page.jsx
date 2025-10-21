@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
 
-      <div className="w-full   flex pb-10  overflow-x-hidden h-full md:min-h-[130vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
+      <div className="w-full   flex pb-10  overflow-x-hidden h-full md:min-h-[140vh] max-md:hidden justify-center  bg-[#e41e2a]  items-center">
 
         <div className=" w-full h-full   md:relative    ">
           <div className="absolute inset-0 w-full h-full">
@@ -55,12 +55,12 @@ export default function Home() {
               </div>
 
               {/* main text */}
-              <div className="w-full  h-fit 2xl:mt-12 md:mt-10 mt-5 ">
+              <div className="w-full  h-fit 2xl:mt-8 md:mt-10 mt-5 ">
                 <img src="/image/home/info-text.png" alt="info" className=" w-full h-full object-contain" />
               </div>
 
               {/* form */}
-              <div className="2xl:mt-16 xl:mt-12 mt-6  relative">
+              <div className="2xl:mt-10 xl:mt-12 mt-6  relative">
                 {hasSuccessfullyClaimed ? (
                   <div className="bg-[#e41e2a] text-white  p-12 2xl:p-20 2xl:min-w-[700px] xl:min-w-[500px] min-h-[400px] flex  flex-col  items-center justify-center w-full h-full ">
                     <p className=" text-3xl font-bold">Thank You</p>

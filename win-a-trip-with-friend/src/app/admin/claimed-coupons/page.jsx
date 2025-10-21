@@ -68,6 +68,9 @@ export default function ClaimedCoupons() {
             "Date of Birth": item.claimed_by?.dob || "",
             "Phone": item.claimed_by?.phone || "",
             "Address": item.claimed_by?.address || "",
+            "State": item.claimed_by?.state || "",
+            "Postal Code": item.claimed_by?.postcode || "",
+
             "Claimed At": item.claimed_at,
 
         }));
