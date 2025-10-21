@@ -91,7 +91,7 @@ export default function Home() {
 
               </div>
 
-              <div className=" space-x-2 text-white ">
+              <div className=" space-x-2  text-white ">
                 <a href="https://www.cocacolaep.com/company/privacy-notice/" target="_blank" rel="noopener noreferrer" className="underline">
                   Privacy Policy
                 </a>

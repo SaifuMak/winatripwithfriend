@@ -314,7 +314,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
             </div>
 
 
-            <div className=" space-x-2  md:hidden text-white w-full  pb-5 mx-auto  flex   justify-center text-sm">
+            <div className=" space-x-2  md:hidden text-white w-full  pb-5 mx-auto text-nowrap  flex   justify-center text-xs">
                 <a href="https://www.cocacolaep.com/company/privacy-notice/" target="_blank" rel="noopener noreferrer" className="underline">
                     Privacy Policy
                 </a>
