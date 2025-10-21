@@ -82,9 +82,14 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
 
     const handleSubmit = async (e) => {
         toast.dismiss()
+      
 
         e.preventDefault();
-        console.log(formData);
+          if (!formData.state) {
+            toast.error('Please fill your state to proceed')
+            return
+        }
+        // console.log(formData);
 
         setIsLoading(true)
         try {
@@ -139,6 +144,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
                     placeholder="Address"
                     value={formData.address}
                     onChange={handleChange}
+                    required
                     className={formFieldsStyle}
                 />
 
@@ -166,6 +172,7 @@ export default function PromoForm({ showPopup, setHasSuccessfullyClaimed }) {
                     placeholder="Post Code"
                     value={formData.postcode}
                     onChange={handleChange}
+                    required
                     className={formFieldsStyle}
                 />
 
